@@ -30,13 +30,13 @@ void activity1(void);
  * @brief Function to initialize ADC
  * 
  */
-void InitADC();
+void init_ADC();
 
 /**
  * @brief Function to read values from a channel 
  * @param[in] channel channel number
  */
-uint16_t ReadADC(uint8_t channel);
+uint16_t read_ADC(uint8_t channel);
 /**
  * Macro Definitions
  */
