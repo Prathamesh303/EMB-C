@@ -18,8 +18,8 @@
 void init(void)
 {
 	/* Configure LED Pin */
-	DDRB |= (1<<PB1);//Makes first pin of PORTB as Output
-    DDRC = 0x00; //Makes all pins of PORTD input
+	DDRB |= (1<<PB0);//Makes first pin of PORTB as Output
+    DDRC = 0x00; //Makes all pins of PORTC input
 	PORTC |= (1<<PC1);
 	PORTC |= (1<<PC0);
 }
@@ -34,8 +34,8 @@ void change_led_state(uint8_t state)
  * @brief Main function where the code execution starts
  * 
  * @return int Return 0 if the program completes successfully
- * @note PORTB1 is in sink config. i.e when pin is Low, the LED will turn OFF
- * @note PORTB1 is in sink config. i.e when pin is High, the LED will turn ON
+ * @note PORTB0 is in sink config. i.e when pin is Low, the LED will turn OFF
+ * @note PORTB0 is in sink config. i.e when pin is High, the LED will turn ON
  */
 int main(void)
 {
