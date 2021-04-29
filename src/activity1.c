@@ -1,21 +1,49 @@
-#include "config.h"
-#include "blink.h"
-void activity1(void)
+#include "activity1.h"
+
+void delay_milli_second(uint32_t delay_time)
+{
+	uint32_t i = 0;
+	for (i = 0; i <= delay_time; i++)
+	{
+		_delay_ms(1);
+	}
+}
+
+void Change_LED_state(uint8_t state)
+{
+	LED_PORT = (state << LED_PIN);
+}
+
+void Init_Peripherals(void)
+{
+	/* Configure LED Pin */
+	SET_PORTB0_AS_OUTPUT;//Makes first pin of PORTB as Output
+    SET_PORTD_AS_INPUT; //Makes all pins of PORTD input
+	PORTD |= (1<<PORTD1)|(1<<PORTD0); //Pull Up 
+    PORTD |= (1<<PORTD0);
+    PORTD |= (1<<PORTD1);
+}
+
+uint8_t Status_Of_Led(void)
 {   
-    uint16_t temp=0;
-    InitADC();
-    change_led_state(LED_OFF);
-    while(1){
-        /*checks whether button sensor is ON or OFF */
-        if(!(PINC & 1<<PC0)){
-            /*checks whether heater button is ON or OFF */
-            if(!(PINC & 1<<PC1)){
-                change_led_state(LED_ON);
-                temp = ReadADC(0);
-                _delay_ms(200);
-            }
-            else change_led_state(LED_OFF);
+    uint8_t FLAG=0;
+    InitializePeripherals();/* Initialize Peripherals */
+    ChangeLEDState(LED_OFF);
+    /*checks whether button sensor is ON or OFF */
+    if(BUTTON_SENSOR_ON){
+        /*checks whether heater button is ON or OFF */
+        if(HEATER_SENSOR_ON){
+            ChangeLEDState(LED_ON);
+            FLAG=1;
         }
-        else change_led_state(LED_OFF);
+        else{
+            ChangeLEDState(LED_OFF);
+            FLAG=0;
+        }
     }
+    else {
+        ChangeLEDState(LED_OFF);
+        FLAG=0;
+    }
+    return FLAG;
 }
