@@ -8,28 +8,12 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include "config.h"
-#include "blink.h"
 
-/**
- * @brief Initialize all the Peripherals and pin configurations
- * 
- */
-void init(void)
-{
-	/* Configure LED Pin */
-	DDRB |= (1<<PB0);//Makes first pin of PORTB as Output
-    DDRC = 0x00; //Makes all pins of PORTC input
-	PORTC |= (1<<PC1);
-	PORTC |= (1<<PC0);
-}
-
-void change_led_state(uint8_t state)
-{
-	LED_PORT = (state << LED_PIN);
-}
-
-
+#include "activity1.h"
+#include "activity2.h"
+#include "activity3.h"
+#include "activity4.h"
+#define ON 1
 /**
  * @brief Main function where the code execution starts
  * 
@@ -39,9 +23,22 @@ void change_led_state(uint8_t state)
  */
 int main(void)
 {
-	/* Initialize Peripherals */
-	init();
-	/* Activity1 */
-	activity1();
+	uint16_t Temperature, ADCchannel=0;
+	char TempType;
+	Init_Peripherals(); /*Initalize Port and pin for button and heat sensor*/
+	init_ADC();/*Initalize ADC*/
+	Init_PWM();/* Initialize Peripherals for PWM */
+	Init_USART()/* Initialize Peripherals for UART */
+	
+	while(1){
+		uint8_t Status;
+		/* Turns LED ON if and only if both switches ButtonSensor and Heater are closed */
+		Status=Status_Of_Led();
+		if(Status==ON){
+			Temperature=ReadADC(ADCchannel); /*reads sensor data from ADCChannel*/
+    	    TempType=Generate_PWM(Temperature);/*Generates PWM according to data received from sensor*/
+			USARTWriteString(TempType);/*Sends data to serial monitor*/
+		}
+	}
 	return 0;
 }
