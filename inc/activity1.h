@@ -38,7 +38,7 @@
  * @param[in] state ON or OFF
  * 
  */
-void Change_LED_state(uint8_t state)
+void Change_LED_state(uint8_t state);
 
 /**
  * @brief Function to generate delay in micro seconds

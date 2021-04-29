@@ -28,7 +28,7 @@ int main(void)
 	Init_Peripherals(); /*Initalize Port and pin for button and heat sensor*/
 	init_ADC();/*Initalize ADC*/
 	Init_PWM();/* Initialize Peripherals for PWM */
-	Init_USART()/* Initialize Peripherals for UART */
+	Init_USART();/* Initialize Peripherals for UART */
 	
 	while(1){
 		uint8_t Status;
