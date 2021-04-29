@@ -1,6 +1,5 @@
-#include <avr/io.h>
-#include <util/delay.h>
-
+#include "activity1.h"
+#include "activity2.h"
 void init_ADC()
 {
     // Select Vref=AVcc
@@ -8,7 +7,7 @@ void init_ADC()
     //set prescaller to 128 and enable ADC
     ADCSRA |= (1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0)|(1<<ADEN);
 }
-uint16_t read_ADC(uint8_t channel)
+uint16_t ReadADC(uint8_t channel)
 {
     //select ADC channel with safety mask
     ADMUX &= 0xF8;

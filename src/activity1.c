@@ -27,22 +27,22 @@ void Init_Peripherals(void)
 uint8_t Status_Of_Led(void)
 {   
     uint8_t FLAG=0;
-    InitializePeripherals();/* Initialize Peripherals */
-    ChangeLEDState(LED_OFF);
+    Init_Peripherals();/* Initialize Peripherals */
+    Change_LED_state(LED_OFF);
     /*checks whether button sensor is ON or OFF */
     if(BUTTON_SENSOR_ON){
         /*checks whether heater button is ON or OFF */
         if(HEATER_SENSOR_ON){
-            ChangeLEDState(LED_ON);
+            Change_LED_state(LED_ON);
             FLAG=1;
         }
         else{
-            ChangeLEDState(LED_OFF);
+            Change_LED_state(LED_OFF);
             FLAG=0;
         }
     }
     else {
-        ChangeLEDState(LED_OFF);
+        Change_LED_state(LED_OFF);
         FLAG=0;
     }
     return FLAG;
