@@ -1,4 +1,4 @@
-![off](https://user-images.githubusercontent.com/80693368/116719245-7aabe000-a9f8-11eb-8134-3e54a271281c.jpg)
+
 ## Embedded C Programming Activity1, Activity2, Activity3 and Activity4 with Continuous Integration and Code Quality
 
 #ON
